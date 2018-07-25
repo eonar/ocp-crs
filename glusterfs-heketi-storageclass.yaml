@@ -1,0 +1,8 @@
+kind: StorageClass
+apiVersion: storage.k8s.io/v1
+metadata:
+  name: gluster-dyn
+provisioner: kubernetes.io/glusterfs
+parameters:
+  resturl: "http://myutvlxrocpg02.ocp.nonprod.ambg.com.my:8080"
+  restauthenabled: "false"

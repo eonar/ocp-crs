@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata: 
+  name: logging-volume
+  namespace: logging
+spec:
+  accessModes:
+  - ReadWriteOnce
+  capacity:
+    storage: 1000Gi
+  hostPath:
+    path: /esdata
+  persistentVolumeReclaimPolicy: Retain
+  claimRef:
+    apiVersion: v1
+    kind: PersistentVolumeClaim
+    namespace: logging
+    name: logging-claim-1
