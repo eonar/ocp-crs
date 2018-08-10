@@ -1,0 +1,33 @@
+---
+# one time only, check in "default" project
+apiVersion: v1
+kind: Service
+metadata:
+  # name of service defined
+  name: glusterfs-gfe-service
+  # project name
+  namespace: amaccess-dev
+spec:
+  ports:
+  - port: 1
+---
+apiVersion: v1
+kind: Endpoints
+metadata:
+  # name of endpoint defined
+  name: glusterfs-gfe-endpoint
+  # project name
+  namespace: amaccess-dev
+subsets:
+  - addresses:
+    - ip: 10.122.241.62
+    ports:
+      - port: 1
+  - addresses:
+    - ip: 10.122.241.63
+    ports:
+      - port: 1
+  - addresses:
+    - ip: 10.122.241.64
+    ports:
+      - port: 1

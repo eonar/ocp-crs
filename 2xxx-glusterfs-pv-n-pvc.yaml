@@ -1,0 +1,41 @@
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata: 
+  # name of pv
+  name: myhttpd-pv
+  # name of project
+  namespace: myhttpd
+spec:
+  accessModes:
+  - ReadWriteMany
+  capacity:
+    storage: 1.5T
+  glusterfs:
+    # name of endpoint
+    endpoints: glusterfs-gfe-endpoint
+    # gluster volume
+    path: amaccess
+    readOnly: false
+  persistentVolumeReclaimPolicy: Retain
+  claimRef:
+    apiVersion: v1
+    kind: PersistentVolumeClaim
+    # name of project
+    namespace: myhttpd
+    # name of pvc (refer below)
+    name: myhttpd-pvc
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  # name of pvc
+  name: myhttpd-pvc
+  # name of project
+  namespace: myhttpd
+spec:
+  accessModes:
+  - ReadWriteMany
+  resources:
+    requests:
+      storage: 100G
