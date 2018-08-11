@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata: 
+  name: cassandra-volume
+  namespace: openshift-infra
+spec:
+  accessModes:
+  - ReadWriteOnce
+  capacity:
+    storage: 50Gi
+  glusterfs:
+    endpoints: glusterfs-endpoint
+    path: cassandra
+    readOnly: false
+  persistentVolumeReclaimPolicy: Retain
+  claimRef:
+    apiVersion: v1
+    kind: PersistentVolumeClaim
+    namespace: openshift-infra
+    name: metrics-cassandra-1
